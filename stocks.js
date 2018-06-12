@@ -26,7 +26,11 @@ const stocks = Object.create({}, {
             let netWorth = this.portfolio
             let dollarAmount = 0
             netWorth.forEach(object => {
-                dollarAmount += object.valuation
+                if(object.purchased === false) {
+                    dollarAmount -= object.valuation
+                } else {
+                    dollarAmount += object.valuation
+                }
             })
             return dollarAmount
         }
@@ -41,7 +45,7 @@ const stocks = Object.create({}, {
     }
 })
 stocks.transaction("HELL", 666, 9000, true)
-stocks.transaction('MSFT', 290, 49300, false)
+stocks.transaction('MSFT', 290, 40000000, false)
 
 console.log(stocks.worth())
 console.log(stocks)
